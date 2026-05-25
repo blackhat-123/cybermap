@@ -1,801 +1,1293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber N Tech - Cybersecurity Excellence</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.1;
-        }
-
-        .floating-cube {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            animation: float 6s ease-in-out infinite;
-            transform-style: preserve-3d;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
-            50% { transform: translateY(-20px) rotateX(180deg) rotateY(180deg); }
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 10px #00ffff); }
-            to { filter: drop-shadow(0 0 20px #ff00ff); }
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #00ffff;
-            transform: translateY(-2px);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            z-index: 2;
-            max-width: 800px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: textGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes textGlow {
-            0%, 100% { filter: drop-shadow(0 0 20px #00ffff); }
-            33% { filter: drop-shadow(0 0 20px #ff00ff); }
-            66% { filter: drop-shadow(0 0 20px #ffff00); }
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            color: #000;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.3);
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.6s ease;
-        }
-
-        .cta-button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* 3D Cube Animation */
-        .cube-container {
-            position: absolute;
-            right: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            perspective: 1000px;
-        }
-
-        .cube {
-            width: 200px;
-            height: 200px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotateCube 20s infinite linear;
-        }
-
-        @keyframes rotateCube {
-            0% { transform: rotateX(0deg) rotateY(0deg); }
-            100% { transform: rotateX(360deg) rotateY(360deg); }
-        }
-
-        .cube-face {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
-            border: 2px solid #00ffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .cube-face.front { transform: rotateY(0deg) translateZ(100px); }
-        .cube-face.back { transform: rotateY(180deg) translateZ(100px); }
-        .cube-face.right { transform: rotateY(90deg) translateZ(100px); }
-        .cube-face.left { transform: rotateY(-90deg) translateZ(100px); }
-        .cube-face.top { transform: rotateX(90deg) translateZ(100px); }
-        .cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
-
-        /* Resources Section */
-        .resources {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .resource-card {
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-10px) rotateX(5deg);
-            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
-            border-color: #00ffff;
-        }
-
-        .resource-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .resource-card:hover::before {
-            left: 100%;
-        }
-
-        .resource-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-            text-align: center;
-        }
-
-        .resource-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #00ffff;
-        }
-
-        .resource-card p {
-            opacity: 0.8;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .resource-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .resource-link {
-            background: rgba(0, 255, 255, 0.2);
-            color: #00ffff;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .resource-link:hover {
-            background: rgba(0, 255, 255, 0.3);
-            border-color: #00ffff;
-            transform: scale(1.05);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(26, 26, 46, 0.5));
-        }
-
-        .features-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 15px;
-            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 3rem 2rem 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-link {
-            color: #fff;
-            font-size: 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            color: #00ffff;
-            transform: translateY(-5px) scale(1.2);
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .cube-container {
-                display: none;
-            }
-
-            .resource-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a1a2e;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberSec Resources Dashboard</title>
+  <meta name="description" content="A premium, interactive cybersecurity portal featuring learning roadmaps, practice labs, red teaming, exploit development, and industrial control systems resources.">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation" id="bgAnimation"></div>
 
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">Cyber N Tech</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#resources">Resources</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#contact">Contact</a></li>
+  <!-- TOP NAVIGATION BAR -->
+  <nav class="top-nav">
+    <div class="nav-logo">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      CyberSec Dashboard
+    </div>
+    <div class="nav-items">
+      <a class="nav-item active" href="#overview" id="nav-btn-dash">Dashboard</a>
+      <a class="nav-item" href="#websites">Resources</a>
+      <a class="nav-item" href="#searchengines">Tools</a>
+      <a class="nav-item" href="#ics">Domains</a>
+    </div>
+    <div class="nav-search">
+      <svg viewBox="0 0 16 16">
+        <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <input id="globalSearch" type="text" placeholder="Search resources..." oninput="filterAllResources(this.value)">
+    </div>
+    <div class="nav-right">
+      <a class="btn-github" href="https://github.com/vatsalgupta67/All-In-One-CyberSecurity-Resources" target="_blank">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        GitHub ↗
+      </a>
+    </div>
+  </nav>
+
+  <div class="layout">
+        <!-- CYBER ROADMAP -->
+        <section class="panel section-anchor tab-view" id="roadmap-legacy">
+          <div class="panel-header">
+            <div class="panel-title">Cyber Security Roadmap</div>
+            <div class="panel-actions">
+              <span class="count">Roadmap Summary</span>
+            </div>
+          </div>
+          <div class="roadmap-summary" style="padding: 24px; display: grid; gap: 18px;">
+            <p>Use this roadmap as a structured learning guide for cybersecurity. It covers the foundational skills, offensive and defensive domains, core tools, and certifications needed to progress from beginner to advanced practitioner.</p>
+            <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+              <div class="grid-card roadmap-card">
+                <div class="grid-card-header">
+                  <div class="grid-card-title">Phase 1: Foundations</div>
+                  <span class="tag tag-green">Essentials</span>
+                </div>
+                <div class="grid-card-desc">
+                  Learn the basics of Linux, Windows, networking, shell scripting, HTTP, and computer architecture. These are the building blocks for every cybersecurity role.
+                </div>
+                <ul class="prevention-list" style="margin-top: 10px;">
+                  <li><span class="prev-check">✓</span> Linux / Bash basics</li>
+                  <li><span class="prev-check">✓</span> TCP/IP, DNS, HTTP(S)</li>
+                  <li><span class="prev-check">✓</span> Python scripting & automation</li>
+                  <li><span class="prev-check">✓</span> Git, command line, and terminals</li>
+                </ul>
+              </div>
+
+              <div class="grid-card roadmap-card">
+                <div class="grid-card-header">
+                  <div class="grid-card-title">Phase 2: Core Domains</div>
+                  <span class="tag tag-blue">Intermediate</span>
+                </div>
+                <div class="grid-card-desc">
+                  Master networking, web applications, system internals, cloud, and secure coding concepts before specializing further.
+                </div>
+                <ul class="prevention-list" style="margin-top: 10px;">
+                  <li><span class="prev-check">✓</span> Web app architecture & OWASP Top 10</li>
+                  <li><span class="prev-check">✓</span> Windows internals / Active Directory</li>
+                  <li><span class="prev-check">✓</span> Cloud fundamentals: AWS, Azure, GCP</li>
+                  <li><span class="prev-check">✓</span> Cryptography basics & PKI</li>
+                </ul>
+              </div>
+
+              <div class="grid-card roadmap-card">
+                <div class="grid-card-header">
+                  <div class="grid-card-title">Phase 3: Defensive Skills</div>
+                  <span class="tag tag-purple">Blue Team</span>
+                </div>
+                <div class="grid-card-desc">
+                  Build detection, monitoring, incident response, and recovery skills with SIEM, EDR, threat hunting, and threat intelligence.
+                </div>
+                <ul class="prevention-list" style="margin-top: 10px;">
+                  <li><span class="prev-check">✓</span> Security monitoring & log analysis</li>
+                  <li><span class="prev-check">✓</span> Incident response workflows</li>
+                  <li><span class="prev-check">✓</span> Threat hunting and detection engineering</li>
+                  <li><span class="prev-check">✓</span> Compliance frameworks & risk management</li>
+                </ul>
+              </div>
+
+              <div class="grid-card roadmap-card">
+                <div class="grid-card-header">
+                  <div class="grid-card-title">Phase 4: Offensive Skills</div>
+                  <span class="tag tag-red">Red Team</span>
+                </div>
+                <div class="grid-card-desc">
+                  Learn recon, exploitation, post-exploitation, and payload development while practicing on labs and bug bounty targets.
+                </div>
+                <ul class="prevention-list" style="margin-top: 10px;">
+                  <li><span class="prev-check">✓</span> Reconnaissance & scanning</li>
+                  <li><span class="prev-check">✓</span> Exploitation of web and network targets</li>
+                  <li><span class="prev-check">✓</span> Privilege escalation & persistence</li>
+                  <li><span class="prev-check">✓</span> C2 frameworks and evasion</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="roadmap-details" style="display: grid; gap: 16px;">
+              <div class="notice" style="background: rgba(25, 32, 45, 0.9); padding: 18px; border-radius: 16px;">
+                <strong>Roadmap checklist:</strong>
+                <ul style="margin: 10px 0 0 18px; padding: 0; list-style: disc; color: var(--text-secondary);">
+                  <li>Start with fundamentals and build upward in phases.</li>
+                  <li>Practice every skill with labs and real-world tools.</li>
+                  <li>Mix theory, hands-on exercises, and capture-the-flag challenges.</li>
+                  <li>Track progress with self-assessments and certifications.</li>
+                </ul>
+              </div>
+              <div style="display: grid; gap: 12px;">
+                <h4 style="margin:0;">Roadmap topics included</h4>
+                <div class="chip-list" style="flex-wrap: wrap; gap: 8px; display: flex;">
+                  <span class="chip">Linux</span>
+                  <span class="chip">Networking</span>
+                  <span class="chip">Web Security</span>
+                  <span class="chip">Pentesting</span>
+                  <span class="chip">Cloud Security</span>
+                  <span class="chip">DevSecOps</span>
+                  <span class="chip">Reverse Engineering</span>
+                  <span class="chip">Incident Response</span>
+                  <span class="chip">SIEM</span>
+                  <span class="chip">Malware Analysis</span>
+                </div>
+              </div>
+              <div>
+                <p style="margin: 0;">Original roadmap data is sourced from publicly available cybersecurity learning guides. For the full official roadmap, preserve a link back to the source and continue updating this section as new domains emerge.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Overview</div>
+        <a class="sidebar-link active" href="#overview" onclick="setActiveLink(this)">
+          <span class="dot"></span> Dashboard
+        </a>
+        <a class="sidebar-link" href="#keypoints" onclick="setActiveLink(this)">
+          <span class="dot"></span> Key Points
+        </a>
+        <a class="sidebar-link" href="#roadmap" onclick="setActiveLink(this)">
+          <span class="dot"></span> Cyber Roadmap
+        </a>
+        <a class="sidebar-link" href="#careers" onclick="setActiveLink(this)">
+          <span class="dot"></span> Career Tracks
+        </a>
+        <a class="sidebar-link" href="#prereqs" onclick="setActiveLink(this)">
+          <span class="dot"></span> Prerequisites
+        </a>
+        <a class="sidebar-link" href="#languages" onclick="setActiveLink(this)">
+          <span class="dot"></span> Suggested Languages
+        </a>
+        <a class="sidebar-link" href="#networking" onclick="setActiveLink(this)">
+          <span class="dot"></span> Networking Topics
+        </a>
+      </div>
+      
+      <div class="sidebar-divider"></div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Resources</div>
+        <a class="sidebar-link" href="#websites" onclick="setActiveLink(this)">
+          <span class="dot"></span> Websites
+        </a>
+        <a class="sidebar-link" href="#labs" onclick="setActiveLink(this)">
+          <span class="dot"></span> Practice Labs
+        </a>
+        <a class="sidebar-link" href="#github-repos" onclick="setActiveLink(this)">
+          <span class="dot"></span> GitHub Repos
+        </a>
+        <a class="sidebar-link" href="#podcasts" onclick="setActiveLink(this)">
+          <span class="dot"></span> Podcasts
+        </a>
+        <a class="sidebar-link" href="#platforms" onclick="setActiveLink(this)">
+          <span class="dot"></span> Platforms
+        </a>
+        <a class="sidebar-link" href="#conferences" onclick="setActiveLink(this)">
+          <span class="dot"></span> Conferences
+        </a>
+        <a class="sidebar-link" href="#news" onclick="setActiveLink(this)">
+          <span class="dot"></span> News & Writeups
+        </a>
+      </div>
+      
+      <div class="sidebar-divider"></div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Domains</div>
+        <a class="sidebar-link" href="#ics" onclick="setActiveLink(this)">
+          <span class="dot"></span> ICS / SCADA Ops
+        </a>
+        <a class="sidebar-link" href="#redteam" onclick="setActiveLink(this)">
+          <span class="dot"></span> Red Team Ops
+        </a>
+        <a class="sidebar-link" href="#webapp" onclick="setActiveLink(this)">
+          <span class="dot"></span> Web App Pentest
+        </a>
+        <a class="sidebar-link" href="#exploit" onclick="setActiveLink(this)">
+          <span class="dot"></span> Exploit Dev
+        </a>
+      </div>
+      
+      <div class="sidebar-divider"></div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Tools</div>
+        <a class="sidebar-link" href="#searchengines" onclick="setActiveLink(this)">
+          <span class="dot"></span> Search Engines
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="content">
+      <div class="breadcrumb">
+        <a href="#overview">CyberSec Portal</a>
+        <span class="sep">›</span>
+        <span class="current" id="bread-current">Dashboard</span>
+      </div>
+
+      <div class="page">
+
+        <!-- VIEW: DASHBOARD -->
+        <div id="view-dashboard" class="tab-view active-view">
+
+          <!-- PAGE HEADER -->
+          <header class="page-header" id="overview">
+            <div class="page-title">
+              All-In-One CyberSecurity Portal
+              <span>A premium, community-driven catalog of free learning materials and threat diagnostics.</span>
+            </div>
+          </header>
+
+          <!-- WELCOME BANNER -->
+          <section class="alert">
+            <svg viewBox="0 0 16 16">
+              <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a.75.75 0 110 1.5A.75.75 0 018 4zm1 7H7V8h2v3z"/>
+            </svg>
+            <div><strong>Community Driven Portal</strong> — All listed resources are free and publicly accessible. Toggle checkboxes to save your learning milestones!</div>
+          </section>
+
+          <!-- DASHBOARD METRICS ROW -->
+          <section class="stats-row">
+            <div class="stat-box">
+              <div class="stat-num cyan" id="stat-bookmarks">0</div>
+              <div class="stat-label">Bookmarked Resources</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num purple">56</div>
+              <div class="stat-label">OSINT Search Engines</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num orange">20</div>
+              <div class="stat-label">GitHub Repos</div>
+            </div>
+            <div class="stat-box progress-widget">
+              <div class="progress-header">
+                <span>Learning Milestones</span>
+                <span id="milestone-percentage">0%</span>
+              </div>
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="milestone-progress"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- LIVE THREAT MONITOR -->
+          <section class="panel section-anchor" id="live-monitor" style="margin-bottom: 24px;">
+            <div class="panel-header-custom" style="padding: 12px 24px; border-bottom: 1px solid var(--border-dim); background: rgba(6, 9, 19, 0.45);">
+              <h2 style="font-size: 20px; font-weight: 800; background: linear-gradient(90deg, var(--cyan) 0%, var(--green) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Outfit', sans-serif; letter-spacing: -0.5px;">
+                Live Threat Monitor
+              </h2>
+            </div>
+            
+            <div class="dual-map-grid">
+              
+              <!-- Vector A -->
+              <div class="map-vector-box">
+                <div class="vector-header">
+                  <h3>Vector A: General Network & Malware</h3>
+                  <span class="tag tag-red">Check Point Engine</span>
+                </div>
+                <div class="iframe-container" style="background: #02040a;">
+                  <iframe 
+                    src="https://threatmap.checkpoint.com/" 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+                    loading="lazy" 
+                    sandbox="allow-scripts allow-same-origin allow-popups">
+                  </iframe>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- LIVE THREAT INTEL LOGGER -->
+          <div class="threat-grid">
+          <div class="panel" id="panel-attacks">
+            <div class="panel-header">
+              <div class="panel-title">Active Attack Campaigns <span class="count" id="attack-count">4 Campaigns</span></div>
+              <button class="btn btn-default btn-icon" onclick="simulateNewCampaign()" title="Simulate Campaign Attack">
+                ⚡
+              </button>
+            </div>
+            <ul class="threat-feed" id="feed-attacks">
+              <!-- Dynamically Populated -->
             </ul>
-        </nav>
-    </header>
+            <div class="last-updated" id="attacks-updated">FEED INITIALIZED</div>
+          </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Cyber N Tech</h1>
-            <p>Your Ultimate Cybersecurity Learning Hub</p>
-            <a href="#resources" class="cta-button">Explore Resources</a>
+          <div class="panel" id="panel-cves">
+            <div class="panel-header">
+              <div class="panel-title">Critical & Recent CVEs <span class="count" id="cve-count">4 CVEs</span></div>
+            </div>
+            <div id="feed-cves">
+              <!-- Dynamically Populated -->
+            </div>
+            <div class="last-updated" id="cves-updated">FEED INITIALIZED</div>
+          </div>
         </div>
-        <div class="cube-container">
-            <div class="cube">
-                <div class="cube-face front">🔒</div>
-                <div class="cube-face back">🛡️</div>
-                <div class="cube-face right">🔐</div>
-                <div class="cube-face left">🗝️</div>
-                <div class="cube-face top">⚡</div>
-                <div class="cube-face bottom">🔍</div>
+
+        <!-- THREAT BREAKDOWN AND PREVENTION CHECKS -->
+        <div class="threat-grid" style="margin-bottom: 24px;">
+          <div class="panel" id="panel-breakdown">
+            <div class="panel-header">
+              <div class="panel-title">Threat Landscape Overview</div>
             </div>
+            <div id="feed-breakdown">
+              <div class="severity-bar">
+                <div class="sev-label">Ransomware</div>
+                <div class="sev-track"><div class="sev-fill critical" style="width: 42%;"></div></div>
+                <div class="sev-count">42%</div>
+              </div>
+              <div class="severity-bar">
+                <div class="sev-label">Zero-Day Exploits</div>
+                <div class="sev-track"><div class="sev-fill high" style="width: 28%;"></div></div>
+                <div class="sev-count">28%</div>
+              </div>
+              <div class="severity-bar">
+                <div class="sev-label">APT Phishing</div>
+                <div class="sev-track"><div class="sev-fill medium" style="width: 18%;"></div></div>
+                <div class="sev-count">18%</div>
+              </div>
+              <div class="severity-bar">
+                <div class="sev-label">IoT Malware</div>
+                <div class="sev-track"><div class="sev-fill low" style="width: 12%;"></div></div>
+                <div class="sev-count">12%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="panel-prevention">
+            <div class="panel-header">
+              <div class="panel-title">Defensive Controls & Best Practices</div>
+            </div>
+            <ul class="prevention-list">
+              <li>
+                <span class="prev-check">✓</span>
+                <div class="threat-body">
+                  <div class="prev-title">Multi-Factor Authentication (MFA)</div>
+                  <div class="prev-desc">Enforce Phishing-resistant MFA on all public surfaces and VPN systems.</div>
+                </div>
+              </li>
+              <li>
+                <span class="prev-check">✓</span>
+                <div class="threat-body">
+                  <div class="prev-title">Micro-Segmentation</div>
+                  <div class="prev-desc">Strictly segment OT / Industrial control systems from standard business IT nodes.</div>
+                </div>
+              </li>
+              <li>
+                <span class="prev-check">✓</span>
+                <div class="threat-body">
+                  <div class="prev-title">Proactive Vulnerability Scans</div>
+                  <div class="prev-desc">Audit external infrastructure immediately against newly announced CVEs.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-    </section>
-
-    <!-- Resources Section -->
-    <section class="resources" id="resources">
-        <h2 class="section-title">Cybersecurity Resources</h2>
-        <div class="resource-grid">
-            <div class="resource-card">
-                <span class="resource-icon">🌐</span>
-                <h3>Networking</h3>
-                <p>Master network protocols, security, and infrastructure fundamentals for cybersecurity professionals.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">Cisco Networking</a>
-                    <a href="#" class="resource-link">Network+</a>
-                    <a href="#" class="resource-link">Wireshark</a>
-                    <a href="#" class="resource-link">Packet Analysis</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">🐉</span>
-                <h3>Kali Linux</h3>
-                <p>Complete penetration testing toolkit with advanced security tools and methodologies.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">Kali Tools</a>
-                    <a href="#" class="resource-link">Metasploit</a>
-                    <a href="#" class="resource-link">Nmap</a>
-                    <a href="#" class="resource-link">Burp Suite</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">☁️</span>
-                <h3>Cloud Security</h3>
-                <p>Secure cloud environments and learn cloud-native security practices and tools.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">AWS Security</a>
-                    <a href="#" class="resource-link">Azure Security</a>
-                    <a href="#" class="resource-link">GCP Security</a>
-                    <a href="#" class="resource-link">Cloud Compliance</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">🤖</span>
-                <h3>AI & LLM Security</h3>
-                <p>Explore AI security, machine learning vulnerabilities, and LLM attack vectors.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">AI Security</a>
-                    <a href="#" class="resource-link">LLM Attacks</a>
-                    <a href="#" class="resource-link">ML Security</a>
-                    <a href="#" class="resource-link">Adversarial AI</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">🏆</span>
-                <h3>CTF Challenges</h3>
-                <p>Capture The Flag competitions and challenges to test your cybersecurity skills.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">PicoCTF</a>
-                    <a href="#" class="resource-link">OverTheWire</a>
-                    <a href="#" class="resource-link">HackTheBox</a>
-                    <a href="#" class="resource-link">CTF Tools</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">🎯</span>
-                <h3>TryHackMe</h3>
-                <p>Interactive cybersecurity learning platform with hands-on labs and guided paths.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">THM Rooms</a>
-                    <a href="#" class="resource-link">Learning Paths</a>
-                    <a href="#" class="resource-link">King of the Hill</a>
-                    <a href="#" class="resource-link">Certificates</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">🔍</span>
-                <h3>Bug Bounty</h3>
-                <p>Ethical hacking and vulnerability research through bug bounty platforms.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">HackerOne</a>
-                    <a href="#" class="resource-link">Bugcrowd</a>
-                    <a href="#" class="resource-link">Intigriti</a>
-                    <a href="#" class="resource-link">OWASP Top 10</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">🔐</span>
-                <h3>Cryptography</h3>
-                <p>Modern cryptographic techniques, protocols, and implementation security.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">Crypto Basics</a>
-                    <a href="#" class="resource-link">PKI</a>
-                    <a href="#" class="resource-link">Hash Functions</a>
-                    <a href="#" class="resource-link">Digital Signatures</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">🚨</span>
-                <h3>Incident Response</h3>
-                <p>Cybersecurity incident handling, forensics, and threat hunting methodologies.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">DFIR</a>
-                    <a href="#" class="resource-link">Threat Hunting</a>
-                    <a href="#" class="resource-link">Malware Analysis</a>
-                    <a href="#" class="resource-link">SIEM</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">📊</span>
-                <h3>Compliance & Governance</h3>
-                <p>Security frameworks, compliance standards, and governance best practices.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">ISO 27001</a>
-                    <a href="#" class="resource-link">NIST Framework</a>
-                    <a href="#" class="resource-link">GDPR</a>
-                    <a href="#" class="resource-link">SOX Compliance</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">🔧</span>
-                <h3>Security Tools</h3>
-                <p>Essential cybersecurity tools for assessment, monitoring, and protection.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">Nessus</a>
-                    <a href="#" class="resource-link">OpenVAS</a>
-                    <a href="#" class="resource-link">Splunk</a>
-                    <a href="#" class="resource-link">Snort</a>
-                </div>
-            </div>
-
-            <div class="resource-card">
-                <span class="resource-icon">🎓</span>
-                <h3>Certifications</h3>
-                <p>Industry-recognized cybersecurity certifications and career development paths.</p>
-                <div class="resource-links">
-                    <a href="#" class="resource-link">CISSP</a>
-                    <a href="#" class="resource-link">CEH</a>
-                    <a href="#" class="resource-link">OSCP</a>
-                    <a href="#" class="resource-link">Security+</a>
-                </div>
-            </div>
         </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="features-container">
-            <h2 class="section-title">Why Choose Cyber N Tech?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Cutting-Edge Content</h3>
-                    <p>Latest cybersecurity trends, tools, and techniques updated regularly</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Community Driven</h3>
-                    <p>Join thousands of cybersecurity professionals sharing knowledge</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💡</div>
-                    <h3>Practical Learning</h3>
-                    <p>Hands-on labs, real-world scenarios, and interactive challenges</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Continuous Updates</h3>
-                    <p>Resources updated to match evolving threat landscape</p>
-                </div>
+        <!-- RENEWED KEY POINTS: CORE SECURITY AXIOMS -->
+        <section class="panel section-anchor tab-view" id="keypoints">
+          <div class="panel-header">
+            <div class="panel-title">Core Cybersecurity Axioms</div>
+          </div>
+          <div class="card-grid" style="padding: 20px 24px;">
+            <div class="grid-card axiom-card">
+              <div class="grid-card-header">
+                <div class="grid-card-title">Axiom I: Code is the Law</div>
+                <span class="tag tag-blue">Axiom I</span>
+              </div>
+              <div class="grid-card-desc">
+                Programming is the ultimate system baseline. To defend, audit, or break complex software structures, a practitioner must first master the logic, design, and execution patterns of the underlying code itself.
+              </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="#" class="social-link">📧</a>
-                <a href="#" class="social-link">💬</a>
-                <a href="#" class="social-link">📱</a>
-                <a href="#" class="social-link">🌐</a>
+            <div class="grid-card axiom-card">
+              <div class="grid-card-header">
+                <div class="grid-card-title">Axiom II: The Network Never Lies</div>
+                <span class="tag tag-green">Axiom II</span>
+              </div>
+              <div class="grid-card-desc">
+                Information packets are the true soul of IT. While threat actors may delete logs and spoof processes, the raw network telemetry, routing tables, and socket handshakes remain an unalterable audit trail.
+              </div>
             </div>
-            <p>&copy; 2025 Cyber N Tech. All rights reserved. Secure your future with us.</p>
+
+            <div class="grid-card axiom-card">
+              <div class="grid-card-header">
+                <div class="grid-card-title">Axiom III: Try Smarter, Not Harder</div>
+                <span class="tag tag-orange">Axiom III</span>
+              </div>
+              <div class="grid-card-desc">
+                Brute forcing is for amateur script-kiddies. Successful security research relies on detailed reconnaissance, logical modeling, and targeting the deep structural weaknesses of systems rather than raw force.
+              </div>
+            </div>
+
+            <div class="grid-card axiom-card">
+              <div class="grid-card-header">
+                <div class="grid-card-title">Axiom IV: Capabilities over Credentials</div>
+                <span class="tag tag-purple">Axiom IV</span>
+              </div>
+              <div class="grid-card-desc">
+                Academic degrees open corporate gates, but relentless terminal curiosity, hands-on lab competency, and the ability to solve ambiguous technical puzzles are what truly forge elite security professionals.
+              </div>
+            </div>
+
+            <div class="grid-card axiom-card">
+              <div class="grid-card-header">
+                <div class="grid-card-title">Axiom V: Assume Breach (Zero Trust)</div>
+                <span class="tag tag-red">Axiom V</span>
+              </div>
+              <div class="grid-card-desc">
+                Outer firewalls are always bypassable. True defense requires strict segmentation, absolute zero trust architectures, continuous audit sweeps, and verifying every single asset, transaction, and packet.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW: LEARNING PATH -->
+        <section class="panel section-anchor tab-view" id="roadmap">
+          <div class="panel-header">
+            <div class="panel-title">Cybersecurity Roadmap <span class="count">roadmap.sh aligned</span></div>
+          </div>
+          <div class="timeline cyber-roadmap" style="padding: 24px;">
+            <!-- Phase 1 -->
+            <div class="timeline-item">
+              <div class="timeline-badge phase-1">1</div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Phase 1: Fundamental IT Skills</h4>
+                  <span class="tag tag-green">Beginner</span>
+                </div>
+                <div class="timeline-body">
+                  <p>Build the base: hardware, connectivity, troubleshooting, productivity suites, operating systems, and basic networking.</p>
+                  <ul class="prevention-list" style="margin-top: 10px;">
+                    <li><span class="prev-check">✓</span> Linux Command Line & Bash scripting</li>
+                    <li><span class="prev-check">✓</span> Windows Administration & PowerShell</li>
+                    <li><span class="prev-check">✓</span> Basic Computer Hardware & RAM structures</li>
+                  </ul>
+                  <div class="roadmap-chip-list">
+                    <span class="chip">Computer hardware components</span>
+                    <span class="chip">Connection types</span>
+                    <span class="chip">OS-independent troubleshooting</span>
+                    <span class="chip">Windows</span>
+                    <span class="chip">Linux</span>
+                    <span class="chip">macOS</span>
+                    <span class="chip">GUI and CLI navigation</span>
+                    <span class="chip">Permissions</span>
+                    <span class="chip">Software installation</span>
+                    <span class="chip">File CRUD</span>
+                    <span class="chip">Common commands</span>
+                    <span class="chip">MS Office, Google Suite, iCloud</span>
+                    <span class="chip">WiFi, Bluetooth, NFC, Infrared</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Phase 2 -->
+            <div class="timeline-item">
+              <div class="timeline-badge phase-2">2</div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Phase 2: Networking Knowledge</h4>
+                  <span class="tag tag-blue">Core Skills</span>
+                </div>
+                <div class="timeline-body">
+                  <p>Learn how systems talk, route, authenticate, segment, and fail. This is the backbone for defense and attack analysis.</p>
+                  <ul class="prevention-list" style="margin-top: 10px;">
+                    <li><span class="prev-check">✓</span> OSI & TCP/IP Network Models</li>
+                    <li><span class="prev-check">✓</span> Wireshark Packet Analysis & Protocol auditing</li>
+                    <li><span class="prev-check">✓</span> Firewalls, IDS/IPS, and local network segmentation</li>
+                  </ul>
+                  <div class="roadmap-chip-list">
+                    <span class="chip">Common ports</span>
+                    <span class="chip">HTTP / HTTPS</span>
+                    <span class="chip">SSH, RDP, FTP, SFTP</span>
+                    <span class="chip">SSL / TLS basics</span>
+                    <span class="chip">Subnetting</span>
+                    <span class="chip">Public vs private IPs</span>
+                    <span class="chip">CIDR and subnet masks</span>
+                    <span class="chip">DHCP, DNS, NAT, NTP, IPAM</span>
+                    <span class="chip">VLAN, DMZ, ARP, VM</span>
+                    <span class="chip">Routers, switches, VPNs</span>
+                    <span class="chip">LAN, WAN, WLAN, MAN</span>
+                    <span class="chip">NAS and SAN</span>
+                    <span class="chip">Network topologies</span>
+                    <span class="chip">Kerberos, RADIUS, LDAP, SSO</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="timeline-item">
+              <div class="timeline-badge phase-3">3</div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Phase 3: Virtualization, Labs & Tooling</h4>
+                  <span class="tag tag-orange">Hands On</span>
+                </div>
+                <div class="timeline-body">
+                  <p>Use labs and virtual environments to practice safely, repeat attacks, analyze packets, and build operational muscle memory.</p>
+                  <ul class="prevention-list" style="margin-top: 10px;">
+                    <li><span class="prev-check">✓</span> Active Directory Hacking & Red Teaming basics</li>
+                    <li><span class="prev-check">✓</span> SOC Analyst operations, SIEM monitoring, threat hunting</li>
+                    <li><span class="prev-check">✓</span> Web Application vulnerability assessment (OWASP Top 10)</li>
+                  </ul>
+                  <div class="roadmap-chip-list">
+                    <span class="chip">VirtualBox</span>
+                    <span class="chip">VMware</span>
+                    <span class="chip">ESXi</span>
+                    <span class="chip">Proxmox</span>
+                    <span class="chip">Hypervisors</span>
+                    <span class="chip">Guest OS / Host OS</span>
+                    <span class="chip">HackTheBox</span>
+                    <span class="chip">TryHackMe</span>
+                    <span class="chip">VulnHub</span>
+                    <span class="chip">picoCTF</span>
+                    <span class="chip">SANS Holiday Hack</span>
+                    <span class="chip">nmap</span>
+                    <span class="chip">Wireshark</span>
+                    <span class="chip">tcpdump</span>
+                    <span class="chip">tracert</span>
+                    <span class="chip">ping, arp, dig, nslookup</span>
+                    <span class="chip">curl and hping</span>
+                    <span class="chip">iptables and netstat</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="timeline-item">
+              <div class="timeline-badge phase-4">4</div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Phase 4: Security Skills & Knowledge</h4>
+                  <span class="tag tag-purple">Security Core</span>
+                </div>
+                <div class="timeline-body">
+                  <p>Understand how security programs detect, respond, recover, and reduce risk across people, process, and technology.</p>
+                  <ul class="prevention-list" style="margin-top: 10px;">
+                    <li><span class="prev-check">✓</span> Top Certifications: Security+, CEH, OSCP, CISSP</li>
+                    <li><span class="prev-check">✓</span> Complex lab environments (HackTheBox, OffSec Proving Grounds)</li>
+                    <li><span class="prev-check">✓</span> Custom offensive malware loader crafting & EDR evasion research</li>
+                  </ul>
+                  <div class="roadmap-chip-list">
+                    <span class="chip">CIA triad</span>
+                    <span class="chip">Defense in depth</span>
+                    <span class="chip">Zero Trust</span>
+                    <span class="chip">Cyber Kill Chain</span>
+                    <span class="chip">MITRE ATT&CK</span>
+                    <span class="chip">Diamond Model</span>
+                    <span class="chip">Risk definition</span>
+                    <span class="chip">Backups and resiliency</span>
+                    <span class="chip">MFA and 2FA</span>
+                    <span class="chip">Hardening</span>
+                    <span class="chip">Isolation</span>
+                    <span class="chip">IDS / IPS</span>
+                    <span class="chip">Honeypots</span>
+                    <span class="chip">Threat intel and OSINT</span>
+                    <span class="chip">Threat hunting</span>
+                    <span class="chip">Forensics basics</span>
+                    <span class="chip">Vulnerability management</span>
+                    <span class="chip">Reverse engineering basics</span>
+                    <span class="chip">Rules of engagement</span>
+                    <span class="chip">Blue, red, purple teams</span>
+                    <span class="chip">SIEM and SOAR</span>
+                    <span class="chip">Event logs, syslog, netflow</span>
+                    <span class="chip">Packet and firewall logs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phase 5 -->
+            <div class="timeline-item">
+              <div class="timeline-badge phase-5">5</div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Phase 5: Cryptography, Standards & Controls</h4>
+                  <span class="tag tag-red">Controls</span>
+                </div>
+                <div class="timeline-body">
+                  <p>Learn the defensive control language used by analysts, engineers, auditors, and architecture teams.</p>
+                  <div class="roadmap-chip-list">
+                    <span class="chip">Hashing and salting</span>
+                    <span class="chip">Key exchange</span>
+                    <span class="chip">PKI</span>
+                    <span class="chip">Public and private keys</span>
+                    <span class="chip">Obfuscation</span>
+                    <span class="chip">ISO, NIST, RMF, CIS CSF</span>
+                    <span class="chip">MAC and NAC</span>
+                    <span class="chip">Port blocking</span>
+                    <span class="chip">Group Policy</span>
+                    <span class="chip">Sinkholes</span>
+                    <span class="chip">ACLs</span>
+                    <span class="chip">Patching</span>
+                    <span class="chip">Jump servers</span>
+                    <span class="chip">Endpoint security</span>
+                    <span class="chip">EDR, DLP, AV, antimalware</span>
+                    <span class="chip">Firewalls and NGFW</span>
+                    <span class="chip">HIPS, NIDS, NIPS</span>
+                    <span class="chip">Sandboxing</span>
+                    <span class="chip">DNSSEC, LDAPS, SRTP, S/MIME</span>
+                    <span class="chip">WPA, WPA2, WPA3, WEP</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phase 6 -->
+            <div class="timeline-item">
+              <div class="timeline-badge phase-6">6</div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Phase 6: Attacks, IR & Cloud Security</h4>
+                  <span class="tag tag-blue">Advanced</span>
+                </div>
+                <div class="timeline-body">
+                  <p>Connect attack patterns to incident response, cloud deployment models, and secure engineering practices.</p>
+                  <div class="roadmap-chip-list">
+                    <span class="chip">Preparation to lessons learned</span>
+                    <span class="chip">Zero day, known, unknown, APT</span>
+                    <span class="chip">Phishing, vishing, whaling</span>
+                    <span class="chip">Smishing, spam, spim</span>
+                    <span class="chip">Social engineering</span>
+                    <span class="chip">Reconnaissance</span>
+                    <span class="chip">Watering hole</span>
+                    <span class="chip">Typo squatting</span>
+                    <span class="chip">Brute force vs password spray</span>
+                    <span class="chip">DoS and DDoS</span>
+                    <span class="chip">MITM and spoofing</span>
+                    <span class="chip">DNS poisoning</span>
+                    <span class="chip">VLAN hopping</span>
+                    <span class="chip">Buffer overflow</span>
+                    <span class="chip">SQL injection, XSS, CSRF</span>
+                    <span class="chip">Replay and pass-the-hash</span>
+                    <span class="chip">Directory traversal</span>
+                    <span class="chip">Cloud shared responsibility</span>
+                    <span class="chip">SaaS, PaaS, IaaS</span>
+                    <span class="chip">Private, public, hybrid cloud</span>
+                    <span class="chip">AWS, GCP, Azure</span>
+                    <span class="chip">Infrastructure as Code</span>
+                    <span class="chip">Serverless</span>
+                    <span class="chip">Python, Go, JavaScript, C++, Bash, PowerShell</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phase 7 -->
+            <div class="timeline-item">
+              <div class="timeline-badge phase-7">7</div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4 class="timeline-title">Phase 7: Certifications & Continuous Learning</h4>
+                  <span class="tag tag-green">Validation</span>
+                </div>
+                <div class="timeline-body">
+                  <p>Use certifications and ongoing labs to validate your level, then keep expanding into new tools, teams, and threat models.</p>
+                  <div class="roadmap-chip-list">
+                    <span class="chip">CompTIA A+</span>
+                    <span class="chip">CompTIA Linux+</span>
+                    <span class="chip">CompTIA Network+</span>
+                    <span class="chip">CCNA</span>
+                    <span class="chip">CompTIA Security+</span>
+                    <span class="chip">CEH</span>
+                    <span class="chip">CISA</span>
+                    <span class="chip">CISM</span>
+                    <span class="chip">GSEC</span>
+                    <span class="chip">GPEN</span>
+                    <span class="chip">GWAPT</span>
+                    <span class="chip">GIAC</span>
+                    <span class="chip">OSCP</span>
+                    <span class="chip">CREST</span>
+                    <span class="chip">CISSP</span>
+                    <span class="chip">VirusTotal</span>
+                    <span class="chip">Joe Sandbox</span>
+                    <span class="chip">any.run</span>
+                    <span class="chip">urlvoid and urlscan</span>
+                    <span class="chip">WHOIS</span>
+                    <span class="chip">GTFOBins, LOLBAS, WADCOMS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW: CAREER TRACKS -->
+        <section class="panel section-anchor tab-view" id="careers">
+          <div class="panel-header">
+            <div class="panel-title">Cybersecurity Career Pathways</div>
+          </div>
+          <div class="card-grid" style="padding: 20px 24px;">
+            <!-- Career 1 -->
+            <div class="grid-card career-card">
+              <div class="grid-card-header">
+                <div class="grid-card-title">Security Operations Center (SOC) Analyst</div>
+                <span class="tag tag-green">Blue Team</span>
+              </div>
+              <div class="grid-card-desc">
+                Monitors organization networks for security events, investigates alerts, mitigates immediate threats, and manages SIEM architectures.
+              </div>
+              <div class="career-details" style="font-size: 11.5px; border-top: 1px solid var(--border-dim); padding-top: 10px; margin-top: 5px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+                <div><strong>Salary Est:</strong> $80,000 - $120,000</div>
+                <div><strong>Key Skills:</strong> SIEM, Wireshark, Incident Response, Log Analysis</div>
+                <div><strong>Best Certs:</strong> Security+, CySA+, GCIH</div>
+              </div>
+            </div>
+
+            <!-- Career 2 -->
+            <div class="grid-card career-card">
+              <div class="grid-card-header">
+                <div class="grid-card-title">Penetration Tester / Ethical Hacker</div>
+                <span class="tag tag-red">Red Team</span>
+              </div>
+              <div class="grid-card-desc">
+                Authorized simulation of active cyber attacks against network structures, web applications, and corporate infrastructure to identify vulnerabilities.
+              </div>
+              <div class="career-details" style="font-size: 11.5px; border-top: 1px solid var(--border-dim); padding-top: 10px; margin-top: 5px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+                <div><strong>Salary Est:</strong> $95,000 - $150,000</div>
+                <div><strong>Key Skills:</strong> Python, Metasploit, Nmap, Active Directory, Web Exploits</div>
+                <div><strong>Best Certs:</strong> OSCP, CEH, GPEN, PNPT</div>
+              </div>
+            </div>
+
+            <!-- Career 3 -->
+            <div class="grid-card career-card">
+              <div class="grid-card-header">
+                <div class="grid-card-title">Cloud Security Engineer</div>
+                <span class="tag tag-blue">Purple Team</span>
+              </div>
+              <div class="grid-card-desc">
+                Architects secure cloud infrastructure (AWS, Azure, GCP), monitors access policies, establishes automated guardrails, and hardening structures.
+              </div>
+              <div class="career-details" style="font-size: 11.5px; border-top: 1px solid var(--border-dim); padding-top: 10px; margin-top: 5px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+                <div><strong>Salary Est:</strong> $110,000 - $170,000</div>
+                <div><strong>Key Skills:</strong> Cloud Architecture, Terraform, IAM Policies, DevSecOps</div>
+                <div><strong>Best Certs:</strong> AWS Security, CCSP, CCSK</div>
+              </div>
+            </div>
+
+            <!-- Career 4 -->
+            <div class="grid-card career-card">
+              <div class="grid-card-header">
+                <div class="grid-card-title">Incident Responder / DFIR</div>
+                <span class="tag tag-orange">Response</span>
+              </div>
+              <div class="grid-card-desc">
+                Deploys instantly in emergency breaches, conducts digital forensics on memory and disk files, traces actor entry points, and designs containment paths.
+              </div>
+              <div class="career-details" style="font-size: 11.5px; border-top: 1px solid var(--border-dim); padding-top: 10px; margin-top: 5px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+                <div><strong>Salary Est:</strong> $100,000 - $160,000</div>
+                <div><strong>Key Skills:</strong> Forensics, Malware Analysis, Reverse Engineering, EDR Tools</div>
+                <div><strong>Best Certs:</strong> GCFE, GCFA, CHFI</div>
+              </div>
+            </div>
+
+            <!-- Career 5 -->
+            <div class="grid-card career-card">
+              <div class="grid-card-header">
+                <div class="grid-card-title">Security Architect / Director</div>
+                <span class="tag tag-purple">Leadership</span>
+              </div>
+              <div class="grid-card-desc">
+                Designs high-level cybersecurity enterprise defense postures, coordinates framework compliance (NIST, ISO), manages budgets, and leads security teams.
+              </div>
+              <div class="career-details" style="font-size: 11.5px; border-top: 1px solid var(--border-dim); padding-top: 10px; margin-top: 5px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+                <div><strong>Salary Est:</strong> $130,000 - $200,000+</div>
+                <div><strong>Key Skills:</strong> Risk Management, Leadership, Security Architecture, Compliance</div>
+                <div><strong>Best Certs:</strong> CISSP, CISM, CISA</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PREREQUISITES CHECKLIST -->
+        <section class="panel section-anchor tab-view" id="prereqs">
+          <div class="panel-header">
+            <div class="panel-title">Prerequisites & Foundational Milestones</div>
+            <div class="panel-actions">
+              <span class="count">6 Modules</span>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th class="checkbox-cell">Done</th>
+                  <th style="width: 50px;">#</th>
+                  <th>Topic Domain</th>
+                  <th>Core Focus Area</th>
+                  <th>Where to Learn</th>
+                </tr>
+              </thead>
+              <tbody id="prereq-tbody">
+                <tr class="check-row" onclick="togglePrereq(1)">
+                  <td class="checkbox-cell">
+                    <div class="cyber-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                  </td>
+                  <td>1</td>
+                  <td class="topic-name">Command Line Interfaces & Filesystems</td>
+                  <td>Linux CLI commands, Windows Cmd/PowerShell, permissions, scripting</td>
+                  <td class="cell-muted">FreeYouTube guides & CTF basics</td>
+                </tr>
+                <tr class="check-row" onclick="togglePrereq(2)">
+                  <td class="checkbox-cell">
+                    <div class="cyber-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                  </td>
+                  <td>2</td>
+                  <td class="topic-name">Programming Fundamentals (Python)</td>
+                  <td>Control flows, loops, socket programming, script automation, parser building</td>
+                  <td class="cell-muted">FreeCodeCamp & Interactive Tutorials</td>
+                </tr>
+                <tr class="check-row" onclick="togglePrereq(3)">
+                  <td class="checkbox-cell">
+                    <div class="cyber-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                  </td>
+                  <td>3</td>
+                  <td class="topic-name">Basic Cryptography Concepts</td>
+                  <td>Hashing vs Encryption, public/private keys, SSL/TLS handshakes, AES/RSA algorithms</td>
+                  <td class="cell-muted">Khan Academy & YouTube explanations</td>
+                </tr>
+                <tr class="check-row" onclick="togglePrereq(4)">
+                  <td class="checkbox-cell">
+                    <div class="cyber-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                  </td>
+                  <td>4</td>
+                  <td class="topic-name">Technical Hardware & OS Internals</td>
+                  <td>CPU registers, Memory segments (Stack vs Heap), system BIOS, hardware interfaces</td>
+                  <td class="cell-muted">Computer Architecture forums</td>
+                </tr>
+                <tr class="check-row" onclick="togglePrereq(5)">
+                  <td class="checkbox-cell">
+                    <div class="cyber-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                  </td>
+                  <td>5</td>
+                  <td class="topic-name">Computer Networking Sockets & Protocols</td>
+                  <td>OSI model layers, TCP vs UDP routing, subnet masks, packets, firewall logic</td>
+                  <td class="cell-muted">Network+ courses (YouTube / Professor Messer)</td>
+                </tr>
+                <tr class="check-row" onclick="togglePrereq(6)">
+                  <td class="checkbox-cell">
+                    <div class="cyber-checkbox"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                  </td>
+                  <td>6</td>
+                  <td class="topic-name">Advanced Google OSINT & Researching</td>
+                  <td>Search operator dorks, threat intelligence databases, catalog indexing</td>
+                  <td class="cell-muted">Practical OSINT guides</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- PROGRAMMING LANGUAGES SUGGESTIONS -->
+        <section class="panel section-anchor tab-view" id="languages">
+          <div class="panel-header">
+            <div class="panel-title">CyberSecurity Suggested Languages</div>
+          </div>
+          <div class="tabs" id="langTabs">
+            <button class="tab active" onclick="switchLangTab('lang-beginner', this)">Beginner Level</button>
+            <button class="tab" onclick="switchLangTab('lang-intermediate', this)">Intermediate Level</button>
+            <button class="tab" onclick="switchLangTab('lang-advanced', this)">Corporate / Offensive Ops</button>
+          </div>
+          <div id="lang-beginner" class="tab-content active">
+            <div class="notice">
+              <svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a.75.75 0 110 1.5A.75.75 0 018 4zm1 7H7V8h2v3z"/></svg>
+              <span>Beginners should start with Python. It opens up automation, parsing, exploit scripts, and high-level logic.</span>
+            </div>
+            <div class="chip-list">
+              <span class="chip star">Python ★</span>
+            </div>
+          </div>
+          <div id="lang-intermediate" class="tab-content">
+            <div class="chip-list">
+              <span class="chip star">Python</span>
+              <span class="chip star">Bash Shell</span>
+              <span class="chip">C (Basic Syntax)</span>
+              <span class="chip">Structured Query Language (SQL)</span>
+              <span class="chip">JavaScript (Client-Side)</span>
+              <span class="chip">PHP (Server-Side Basics)</span>
+              <span class="chip">PowerShell Scripting</span>
+            </div>
+          </div>
+          <div id="lang-advanced" class="tab-content">
+            <div class="chip-list">
+              <span class="chip star">Python ★</span>
+              <span class="chip star">SQL ★</span>
+              <span class="chip star">C ★</span>
+              <span class="chip star">Bash ★</span>
+              <span class="chip star">PowerShell ★</span>
+              <span class="chip">C# (Windows Active Directory / Offensive Apps)</span>
+              <span class="chip">C++ (Windows EDR Bypass / Malware Crafting)</span>
+              <span class="chip">Assembly x86/x64 (Reverse Engineering / Buffer Overflows)</span>
+              <span class="chip">Go (Highly Efficient Custom Offensive Tools)</span>
+              <span class="chip">Nim (Modern Offensive Operations / Loader Bypass)</span>
+              <span class="chip">JavaScript / Node.js (Web Security Analysis)</span>
+              <span class="chip">PHP (Classic Web Exploit Analysis)</span>
+              <span class="chip">Lua (Wireshark Custom Plugin Scripts)</span>
+              <span class="chip">Java (Android Platform Penetration)</span>
+              <span class="chip">Ruby (Metasploit Exploit Integrations)</span>
+              <span class="chip">Perl (Legacy Scripting)</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- NETWORKING CHIPS & GLOSSARY -->
+        <section class="panel section-anchor tab-view" id="networking">
+          <div class="panel-header">
+            <div class="panel-title">Computer Networking Topics <span class="count">31 Topics</span></div>
+            <span style="font-size:11.5px;color:var(--text-secondary);">Click any topic to read definition!</span>
+          </div>
+          <div class="chip-list" id="networking-chips-container">
+            <!-- Dynamically populated from JavaScript -->
+          </div>
+        </section>
+
+        <!-- WEBSITES DYNAMIC MOUNT -->
+        <section class="panel section-anchor tab-view" id="websites">
+          <div class="panel-header">
+            <div class="panel-title">Essential Learning Websites <span class="count" id="websites-cnt">0</span></div>
+          </div>
+          <div class="table-wrap">
+            <table id="tbl-websites">
+              <thead>
+                <tr>
+                  <th>Website Name</th>
+                  <th>Target URL</th>
+                  <th>Key Focus Description</th>
+                  <th style="width: 140px;">Resource Type</th>
+                  <th style="width: 80px; text-align: center;">Save</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-websites">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- LABS DYNAMIC MOUNT -->
+        <section class="panel section-anchor tab-view" id="labs">
+          <div class="panel-header">
+            <div class="panel-title">Recommended Cyber Practice Labs <span class="count" id="labs-cnt">0</span></div>
+          </div>
+          <div class="card-grid" id="grid-labs">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- REPOS DYNAMIC MOUNT -->
+        <section class="panel section-anchor tab-view" id="github-repos">
+          <div class="panel-header">
+            <div class="panel-title">Curated GitHub Repositories <span class="count" id="repos-cnt">0</span></div>
+          </div>
+          <div class="table-wrap">
+            <table id="tbl-repos">
+              <thead>
+                <tr>
+                  <th>Repository Path</th>
+                  <th>Focus / Domain Category</th>
+                  <th style="width: 80px; text-align: center;">Save</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-repos">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- PODCASTS DYNAMIC MOUNT -->
+        <section class="panel section-anchor tab-view" id="podcasts">
+          <div class="panel-header">
+            <div class="panel-title">Audio Podcasts & Briefings <span class="count" id="podcasts-cnt">0</span></div>
+          </div>
+          <div class="table-wrap">
+            <table id="tbl-podcasts">
+              <thead>
+                <tr>
+                  <th>Podcast Name</th>
+                  <th>Webpage Link</th>
+                  <th>Coverage & Topics</th>
+                  <th style="width: 80px; text-align: center;">Save</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-podcasts">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- PLATFORMS DYNAMIC MOUNT -->
+        <section class="panel section-anchor tab-view" id="platforms">
+          <div class="panel-header">
+            <div class="panel-title">IT & Security Training Platforms <span class="count" id="platforms-cnt">0</span></div>
+          </div>
+          <div class="card-grid" id="grid-platforms">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- CONFERENCES DYNAMIC MOUNT -->
+        <section class="panel section-anchor tab-view" id="conferences">
+          <div class="panel-header">
+            <div class="panel-title">Worldwide Cybersecurity Conferences <span class="count" id="conferences-cnt">0</span></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Conference Name</th>
+                  <th>Category / Scale Type</th>
+                  <th style="width: 80px; text-align: center;">Save</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-conferences">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- NEWS DYNAMIC MOUNT -->
+        <section class="panel section-anchor tab-view" id="news">
+          <div class="panel-header">
+            <div class="panel-title">Intelligence News & Writeups <span class="count" id="news-cnt">0</span></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Intelligence Source Name</th>
+                  <th>Website Portal</th>
+                  <th>Focus Coverage</th>
+                  <th style="width: 80px; text-align: center;">Save</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-news">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- DYNAMIC DOMAINS: ICS/SCADA OPERATIONS -->
+        <section class="panel section-anchor tab-view" id="ics">
+          <div class="panel-header">
+            <div class="panel-title">Industrial Control Systems (ICS / SCADA) Operations</div>
+            <div class="panel-actions">
+              <span class="tag tag-orange">OT DOMAIN</span>
+            </div>
+          </div>
+          <div class="tabs" id="icsTabs">
+            <button class="tab active" onclick="switchDomainTab('ics', 'ics-overview', this)">Core Fundamentals</button>
+            <button class="tab" onclick="switchDomainTab('ics', 'ics-resources', this)">Learning Resources</button>
+            <button class="tab" onclick="switchDomainTab('ics', 'ics-books', this)">Literature Books</button>
+          </div>
+          
+          <div id="ics-overview" class="tab-content active">
+            <div class="notice">
+              <svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a.75.75 0 110 1.5A.75.75 0 018 4zm1 7H7V8h2v3z"/></svg>
+              <span><strong>Operational Technology (OT)</strong> deals with physical process hardware. Key concepts revolve around availability, safety, and operational continuity.</span>
+            </div>
+            <div class="kv-list">
+              <div class="kv-item"><span class="kv-key">Definitions</span><span class="kv-val">Understand core components: SCADA (Supervisory Control), HMI (Human-Machine Interface), PLC (Programmable Logic Controller), RTU (Remote Terminal Unit).</span></div>
+              <div class="kv-item"><span class="kv-key">IT vs OT Security</span><span class="kv-val">IT prioritizes Confidentiality (data secrecy). OT strictly prioritizes Availability and Safety (physical prevention). OT nodes are often highly legacy, lacking encryption or simple patching cycles.</span></div>
+              <div class="kv-item"><span class="kv-key">OT Protocols</span><span class="kv-val">Learn specific industrial network protocols: Modbus (serial/TCP), Siemens S7Comm, Profinet, EtherNet/IP, DNP3.</span></div>
+            </div>
+          </div>
+
+          <div id="ics-resources" class="tab-content">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Free / Paid Learning Resource</th><th>Type / Description</th></tr>
+                </thead>
+                <tbody id="tbody-ics-resources">
+                  <!-- JavaScript populates -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="ics-books" class="tab-content">
+            <div class="kv-list">
+              <div class="kv-item"><span class="kv-key">Pentesting Industrial Control Systems</span><span class="kv-val">Packt Publishing - Clear guide to conducting hands-on assessments of OT networks.</span></div>
+              <div class="kv-item"><span class="kv-key">Industrial Cybersecurity</span><span class="kv-val">Packt Publishing - Deep insights into efficiently monitoring cybersecurity posture.</span></div>
+              <div class="kv-item"><span class="kv-key">Hacking Exposed Industrial Control Systems</span><span class="kv-val">McGraw Hill - Explores real-world attacks, vectors, and hardening checklists.</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- DYNAMIC DOMAINS: RED TEAM OPERATIONS -->
+        <section class="panel section-anchor tab-view" id="redteam">
+          <div class="panel-header">
+            <div class="panel-title">Red Team Operations & Adversary Emulation</div>
+            <div class="panel-actions"><span class="tag tag-red">OFFENSIVE DOMAIN</span></div>
+          </div>
+          <div class="tabs" id="redTabs">
+            <button class="tab active" onclick="switchDomainTab('red', 'red-overview', this)">Core Overview</button>
+            <button class="tab" onclick="switchDomainTab('red', 'red-resources', this)">Emulation Toolkits</button>
+          </div>
+          
+          <div id="red-overview" class="tab-content active">
+            <div class="notice">
+              <svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a.75.75 0 110 1.5A.75.75 0 018 4zm1 7H7V8h2v3z"/></svg>
+              <span>Red Teaming simulates targeted attacks to evaluate the capability of people, tools, and response policies.</span>
+            </div>
+            <div class="kv-list">
+              <div class="kv-item"><span class="kv-key">Pre-Requisites</span><span class="kv-val">Requires mastery of Active Directory, network lateral movement, post-exploitation scripts, and bypass configurations.</span></div>
+              <div class="kv-item"><span class="kv-key">Offensive Mindset</span><span class="kv-val">Unlike pentesting, Red Teaming does not look for every bug; it builds a realistic threat campaign to test detection alarms. "Nothing is secure."</span></div>
+            </div>
+          </div>
+
+          <div id="red-resources" class="tab-content">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Emulation Library / Resource Path</th><th>Key Focus Area</th></tr>
+                </thead>
+                <tbody id="tbody-red-resources">
+                  <!-- Javascript populates -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- DYNAMIC DOMAINS: WEB APPLICATION PENTESTING -->
+        <section class="panel section-anchor tab-view" id="webapp">
+          <div class="panel-header">
+            <div class="panel-title">Web Application Penetration Testing</div>
+            <div class="panel-actions"><span class="tag tag-blue">WEB DOMAIN</span></div>
+          </div>
+          <div class="tabs" id="webTabs">
+            <button class="tab active" onclick="switchDomainTab('web', 'web-overview', this)">Core Concepts</button>
+            <button class="tab" onclick="switchDomainTab('web', 'web-resources', this)">Methodologies</button>
+          </div>
+          
+          <div id="web-overview" class="tab-content active">
+            <div class="notice">
+              <svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a.75.75 0 110 1.5A.75.75 0 018 4zm1 7H7V8h2v3z"/></svg>
+              <span>Web Applications are primary entryways into modern cloud setups. OWASP Top 10 lists core vulnerabilities.</span>
+            </div>
+            <div class="kv-list">
+              <div class="kv-item"><span class="kv-key">Vulnerabilities</span><span class="kv-val">Understand SQL Injections, Cross-Site Scripting (XSS), Broken Auth, CSRF, and Server Side Request Forgery (SSRF).</span></div>
+              <div class="kv-item"><span class="kv-key">Key Languages</span><span class="kv-val">Proficiency in JavaScript, PHP, Node.js, and browser APIs gives you immediate debugging advantage.</span></div>
+            </div>
+          </div>
+
+          <div id="web-resources" class="tab-content">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Web Application Security Library</th><th>Format Style / Coverage</th></tr>
+                </thead>
+                <tbody id="tbody-web-resources">
+                  <!-- Javascript populates -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- DYNAMIC DOMAINS: EXPLOIT DEVELOPMENT -->
+        <section class="panel section-anchor tab-view" id="exploit">
+          <div class="panel-header">
+            <div class="panel-title">Exploit Development & Binary Analysis</div>
+            <div class="panel-actions"><span class="tag tag-purple">BINARY DOMAIN</span></div>
+          </div>
+          <div class="tabs" id="exploitTabs">
+            <button class="tab active" onclick="switchDomainTab('exploit', 'exploit-overview', this)">Core Prerequisites</button>
+            <button class="tab" onclick="switchDomainTab('exploit', 'exploit-resources', this)">Binary Resources</button>
+          </div>
+          
+          <div id="exploit-overview" class="tab-content active">
+            <div class="notice">
+              <svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a.75.75 0 110 1.5A.75.75 0 018 4zm1 7H7V8h2v3z"/></svg>
+              <span>Binary analysis deals directly with system architecture, memory control states, and binary fuzzing mechanisms.</span>
+            </div>
+            <div class="kv-list">
+              <div class="kv-item"><span class="kv-key">Pre-Requisites</span><span class="kv-val">Requires assembly languages (x86/x64), reverse engineering decompilers (Ghidra, IDA), debuggers (x64dbg, GDB), and C knowledge.</span></div>
+              <div class="kv-item"><span class="kv-key">Binary Protections</span><span class="kv-val">Learn to analyze and bypass standard OS mitigations: ASLR (Address Space Randomization), DEP/NX (Execution Prevention), Stack Canaries.</span></div>
+            </div>
+          </div>
+
+          <div id="exploit-resources" class="tab-content">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Exploitation & RE Resource</th><th>Medium Platform</th></tr>
+                </thead>
+                <tbody id="tbody-exploit-resources">
+                  <!-- Javascript populates -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- DYNAMIC MOUNT: OSINT & SECURITY SEARCH ENGINES -->
+        <section class="panel section-anchor tab-view" id="searchengines">
+          <div class="panel-header">
+            <div class="panel-title">CyberSecurity OSINT & Hacking Search Engines <span class="count" id="se-cnt">0</span></div>
+            <div class="panel-actions">
+              <span id="se-category-count" style="font-size:11.5px;color:var(--text-secondary);">Filter Category: All</span>
+            </div>
+          </div>
+          <div class="se-grid" id="grid-search-engines">
+            <!-- Dynamically populated from JS -->
+          </div>
+        </section>
+
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div>
+          Premium Cybersecurity Resource Portal
         </div>
-    </footer>
+        <div>
+          <a href="#overview">Back to Top ↑</a>
+        </div>
+      </footer>
+    </main>
 
-    <script>
-        // Animated Background
-        function createFloatingCubes() {
-            const container = document.getElementById('bgAnimation');
-            for (let i = 0; i < 20; i++) {
-                const cube = document.createElement('div');
-                cube.className = 'floating-cube';
-                cube.style.left = Math.random() * 100 + '%';
-                cube.style.top = Math.random() * 100 + '%';
-                cube.style.animationDelay = Math.random() * 6 + 's';
-                cube.style.animationDuration = (6 + Math.random() * 4) + 's';
-                container.appendChild(cube);
-            }
-        }
+  </div>
 
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  <!-- SLIDE OUT DRAWER FOR NETWORKING GLOSSARY -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  <div class="drawer" id="glossaryDrawer">
+    <div class="drawer-header">
+      <div class="drawer-title" id="drawerTitle">Glossary Definition</div>
+      <button class="drawer-close" onclick="closeDrawer()">&times;</button>
+    </div>
+    <div class="drawer-content" id="drawerContent">
+      <!-- Dynamically filled on chip click -->
+    </div>
+  </div>
 
-        // Header Background on Scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(0, 0, 0, 0.95)';
-            } else {
-                header.style.background = 'rgba(0, 0, 0, 0.9)';
-            }
-        });
-
-        // Intersection Observer for Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe resource cards
-        document.querySelectorAll('.resource-card, .feature-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s ease-out';
-            observer.observe(card);
-        });
-
-        // Dynamic 3D effect on mouse move
-        document.addEventListener('mousemove', (e) => {
-            const cards = document.querySelectorAll('.resource-card');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const cardX = (rect.left + rect.width / 2) / window.innerWidth;
-                const cardY = (rect.top + rect.height / 2) / window.innerHeight;
-
-                const deltaX = (x - cardX) * 10;
-                const deltaY = (y - cardY) * 10;
-
-                card.style.transform = `perspective(1000px) rotateY(${deltaX}deg) rotateX(${-deltaY}deg)`;
-            });
-        });
-
-        // Initialize
-        createFloatingCubes();
-
-        // Particle effect on click
-        document.addEventListener('click', (e) => {
-            for (let i = 0; i < 5; i++) {
-                const particle = document.createElement('div');
-                particle.style.position = 'fixed';
-                particle.style.left = e.clientX + 'px';
-                particle.style.top = e.clientY + 'px';
-                particle.style.width = '4px';
-                particle.style.height = '4px';
-                particle.style.background = '#00ffff';
-                particle.style.borderRadius = '50%';
-                particle.style.pointerEvents = 'none';
-                particle.style.zIndex = '9999';
-                document.body.appendChild(particle);
-
-                const angle = (Math.PI * 2 * i) / 5;
-                const velocity = 5;
-                const x = Math.cos(angle) * velocity;
-                const y = Math.sin(angle) * velocity;
-
-                let opacity = 1;
-                const animate = () => {
-                    opacity -= 0.02;
-                    particle.style.opacity = opacity;
-                    particle.style.left = parseFloat(particle.style.left) + x + 'px';
-                    particle.style.top = parseFloat(particle.style.top) + y + 'px';
-
-                    if (opacity > 0) {
-                        requestAnimationFrame(animate);
-                    } else {
-                        particle.remove();
-                    }
-                };
-                animate();
-            }
-        });
-    </script>
+  <!-- LOAD JS SCRIPTS -->
+  <script src="app.js"></script>
 </body>
 </html>
